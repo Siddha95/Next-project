@@ -14,7 +14,7 @@ export default async function TicketList() {
 
     const tickets = await getTickets();
     return (
-        <div>
+        
             <>
                 {tickets.map((ticket) => (
                     <div key={ticket.id}className="card my-5">
@@ -30,7 +30,7 @@ export default async function TicketList() {
                     <p className="text container">There are no open tickets, lol!</p>
                 )}
             </>
-        </div>
+        
     );
 }
 

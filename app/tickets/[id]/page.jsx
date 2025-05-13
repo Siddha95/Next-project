@@ -1,9 +1,32 @@
+import { notFound } from "next/navigation";
+
+export const dynamicParams = true;
+// This is a dynamic route that will be generated for each ticket
+
+export async function generateStaticParams() {
+    const res = await fetch('https://localhost:4000/tickets');
+    const tickets = await res.json();
+    // Generate static params for each ticket
+    // This will create a static page for each ticket
+    // This is useful for SEO and performance
+    return tickets.map((ticket) => ({
+        id: ticket.id
+    }))
+}
+
+// This is a dynamic route that will be generated for each ticket
+// It will fetch the ticket data from the API and display it
+// It will also revalidate the data every 60 seconds
 async function getTicket(id) {
     const res = await fetch('https://localhost:4000/tickets/' + id, {
         next: {
             revalidate: 60
         }
     })
+    if (!res.ok) {
+        notFound();
+        // This will return a 404 page if the ticket is not found
+    }
 
     return res.json();
 }
