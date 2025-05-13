@@ -3,7 +3,7 @@ import Link from "next/link";
 async function getTickets() {
     const res = await fetch('https://localhost:4000/tickets', {
         next: {
-            revalidate: 0 // opt out of cache
+            revalidate: 60 // opt out of cache
         }
     })
 
