@@ -18,6 +18,8 @@ export async function generateStaticParams() {
 // It will fetch the ticket data from the API and display it
 // It will also revalidate the data every 60 seconds
 async function getTicket(id) {
+
+    await new Promise(resolve => setTimeout(resolve, 3000));
     const res = await fetch('https://localhost:4000/tickets/' + id, {
         next: {
             revalidate: 60

@@ -1,9 +1,13 @@
 import Link from "next/link";
 
 async function getTickets() {
+
+    // imitate a delay
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
     const res = await fetch('https://localhost:4000/tickets', {
         next: {
-            revalidate: 60 // opt out of cache
+            revalidate: 0 // opt out of cache
         }
     })
 
@@ -21,13 +25,14 @@ export default async function TicketList() {
                         <Link href={`/tickets/${ticket.id}`}>  
                         <h3>{ticket.title}</h3> 
                         <p>{ticket.body.slice(0,200)}...</p>
-                        <div className={`pill ${ticket.priority}`}></div>
+                        <div className={`pill ${ticket.priority}`}>
                             {ticket.priority} priority 
+                        </div>
                         </Link>
                     </div>
                 ))}
                 {tickets.length === 0 && (
-                    <p className="text container">There are no open tickets, lol!</p>
+                    <p className="text-center">There are no open tickets, lol!</p>
                 )}
             </>
         
