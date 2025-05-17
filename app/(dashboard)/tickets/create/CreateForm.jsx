@@ -42,7 +42,7 @@ export default function CreateForm() {
         />
       </label>
       <label>
-        <span>Body:</span>
+        <span>Title:</span>
         <textarea
           required
           onChange={(e) => setBody(e.target.value)}
@@ -64,7 +64,6 @@ export default function CreateForm() {
         className="btn-primary" 
         disabled={isLoading}
       >
-    
       {isLoading && <span>Adding...</span>}
       {!isLoading && <span>Add Ticket</span>}
     </button>
