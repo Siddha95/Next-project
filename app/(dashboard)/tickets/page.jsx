@@ -3,6 +3,11 @@ import TicketList from "./TicketList"
 import Loading from "../loading"
 import Link from "next/link"
 
+export const metadata = {
+  title: "Tickets",
+  description: "View and manage your support tickets.",
+}
+
 export default function Tickets() {
   return (
     <main>
